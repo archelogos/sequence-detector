@@ -1,2 +1,6 @@
 
 *.gz
+
+.ipynb_checkpoints/mnist-basic-training-checkpoint.ipynb
+
+.ipynb_checkpoints/mnist-expert-training-checkpoint.ipynb
