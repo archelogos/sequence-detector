@@ -4,3 +4,12 @@
 .ipynb_checkpoints/mnist-basic-training-checkpoint.ipynb
 
 .ipynb_checkpoints/mnist-expert-training-checkpoint.ipynb
+
+udacity/.ipynb_checkpoints/1_notmnist-checkpoint.ipynb
+
+udacity/.ipynb_checkpoints/2_fullyconnected-checkpoint.ipynb
+
+udacity/notMNIST_large*
+udacity/notMNIST_small*
+
+*.pickle
