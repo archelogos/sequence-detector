@@ -13,3 +13,5 @@ udacity/notMNIST_large*
 udacity/notMNIST_small*
 
 *.pickle
+
+tf-training/.ipynb_checkpoints/mnist-basic-training-checkpoint.ipynb
