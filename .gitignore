@@ -15,3 +15,5 @@ udacity/notMNIST_small*
 *.pickle
 
 tf-training/.ipynb_checkpoints/mnist-basic-training-checkpoint.ipynb
+
+udacity/.ipynb_checkpoints/3_regularization-checkpoint.ipynb
