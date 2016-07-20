@@ -5,3 +5,7 @@
 *.mat
 
 *.pickle
+
+*.ckpt
+
+*.meta
