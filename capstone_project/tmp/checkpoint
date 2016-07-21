@@ -1,0 +1,2 @@
+model_checkpoint_path: "SVHN-CNN-single-1.ckpt"
+all_model_checkpoint_paths: "SVHN-CNN-single-1.ckpt"
