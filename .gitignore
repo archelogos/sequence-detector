@@ -9,3 +9,5 @@
 *.ckpt
 
 *.meta
+
+*.png
