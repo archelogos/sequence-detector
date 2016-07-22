@@ -1,6 +1,8 @@
 # Capstone Project
+# Digit Sequence Detector
 ## Machine Learning Engineer Nanodegree
 Sergio Gordillo - @Sergio_Gordillo
+
 July 2016
 
 ## I. Definition

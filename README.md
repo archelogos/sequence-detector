@@ -1,4 +1,4 @@
-# Smart Live Camera
+# Digit Sequence Detector
 
 ## Getting Started
 
