@@ -23,8 +23,7 @@ import sys
 
 import numpy as np
 
-FLAGS = tf.app.flags.FLAGS
-
 def accuracy(predictions, labels):
 	"""Estimate accuracy between predictions and real labels"""
-  return (100.0 * np.sum(np.argmax(predictions, 2).T == labels) / predictions.shape[1] / predictions.shape[0])
+	return (100.0 * np.sum(np.argmax(predictions, 2).T == labels)
+		/ predictions.shape[1] / predictions.shape[0])

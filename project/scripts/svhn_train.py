@@ -81,8 +81,8 @@ def train():
         log_device_placement=FLAGS.log_device_placement))
     sess.run(init)
 
-    #saver.restore(session, os.path.join(FLAGS.train_dir, 'model.ckpt'))
-    #print('Model Restored')
+    saver.restore(sess, os.path.join(FLAGS.train_dir, 'model.ckpt'))
+    print('Model Restored')
     #print('Initialized')
 
     for step in range(FLAGS.max_steps):
@@ -92,7 +92,7 @@ def train():
       feed_dict = {tf_train_dataset : batch_data, tf_train_labels : batch_labels}
       _, l, predictions = sess.run(
         [optimizer, loss, train_prediction], feed_dict=feed_dict)
-      if (step % 100 == 0):
+      if (step % 5000 == 0):
         print('Minibatch loss at step %d: %f' % (step, l))
         #print('Minibatch accuracy: %.1f%%' % svhn.accuracy(predictions, batch_labels))
         #print('Validation accuracy: %.1f%%' % svhn.accuracy(valid_prediction.eval(session=sess), valid_labels))
@@ -107,9 +107,9 @@ def train():
 
 def main(argv=None):  # pylint: disable=unused-argument
   svhn.load_data()
-  if tf.gfile.Exists(FLAGS.train_dir):
-    tf.gfile.DeleteRecursively(FLAGS.train_dir)
-  tf.gfile.MakeDirs(FLAGS.train_dir, 0777) # force permissions
+  #if tf.gfile.Exists(FLAGS.train_dir):
+  #  tf.gfile.DeleteRecursively(FLAGS.train_dir)
+  #tf.gfile.MakeDirs(FLAGS.train_dir, 0777) # force permissions
   train()
 
 if __name__ == '__main__':

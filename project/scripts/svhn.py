@@ -36,7 +36,7 @@ tf.app.flags.DEFINE_integer('NUM_LABELS', 11, "")
 tf.app.flags.DEFINE_integer('N', 5, "")
 
 # Data consts
-tf.app.flags.DEFINE_string('data_dir', '../data/SVHN_data', "")
+tf.app.flags.DEFINE_string('data_dir', 'data', "")
 #DATA_URL = 'http://ufldl.stanford.edu/housenumbers/'
 #DATA_FOLDER = '../data/SVHN_data/'
 #TRAIN_FILENAME= 'train.tar.gz'
@@ -177,12 +177,12 @@ class CNN:
       predictions: probabilities (softmax)
     """
     return tf.pack([
-                  tf.nn.softmax(self.model(data)[0]),\
-                  tf.nn.softmax(self.model(data)[1]),\
-                  tf.nn.softmax(self.model(data)[2]),\
-                  tf.nn.softmax(self.model(data)[3]),\
-                  tf.nn.softmax(self.model(data)[4]),\
-                  tf.nn.softmax(self.model(data)[5])])
+                  tf.nn.softmax(self.inference(data)[0]),\
+                  tf.nn.softmax(self.inference(data)[1]),\
+                  tf.nn.softmax(self.inference(data)[2]),\
+                  tf.nn.softmax(self.inference(data)[3]),\
+                  tf.nn.softmax(self.inference(data)[4]),\
+                  tf.nn.softmax(self.inference(data)[5])])
 
 
 """########################################"""
