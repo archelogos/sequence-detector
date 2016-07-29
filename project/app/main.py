@@ -40,8 +40,9 @@ saver.restore(session, "svhn/trained_models/model-gcp-200k.ckpt")
 print('Model Restored')
 
 
-def predict_svhn(x):
-    return session.run(y, feed_dict={x: x}).flatten().tolist()
+def predict_svhn(inp):
+    return session.run(y, feed_dict={x: inp}).flatten().tolist()
+
 
 
 
@@ -61,8 +62,10 @@ app = Flask(__name__)
 
 @app.route('/api/predict', methods=['POST'])
 def predict():
-    img_index = request.json
+    #print(request.json['imageId'])
+    img_index = request.json['imageId']
     original, processed, label = preprocessing.rtp_data_processing(img_index)
+    processed = processed.reshape((-1, 32, 32, 1)).astype(np.float32)
     output = predict_svhn(processed)
     return jsonify(results=output)
 
