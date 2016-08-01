@@ -218,9 +218,11 @@ html, body {
   transition: 0.5s all;
 }
 
-#image-container img:hover, #image-container img:focus{
+#image-container img:hover, #image-container img:focus, #image-container img.selected{
   box-shadow: 0 8px 17px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);
 }
+
+
 
 #predict{
   font-size: 20px;

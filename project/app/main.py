@@ -25,6 +25,7 @@ import preprocessing
 x = tf.placeholder(tf.float32, shape=(1, 32, 32, 1))
 CNN = model.CNN()
 pred_aux = CNN.predict(x)
+raw_preds = pred_aux
 y = tf.transpose(tf.argmax(pred_aux, 2))
 # Create a saver.
 saver = tf.train.Saver(tf.all_variables())
@@ -41,17 +42,14 @@ print('Model Restored')
 
 
 def predict_svhn(inp):
-    return session.run(y, feed_dict={x: inp}).flatten().tolist()
+  arr_data = session.run([raw_preds, y], feed_dict={x: inp})
+  data = {}
+  data['raw_preds'] = arr_data[0].flatten().tolist()
+  data['y'] = arr_data[1].flatten().tolist()
+  return data
 
 
-
-
-
-
-
-
-
-
+################################################
 
 import logging
 
@@ -63,27 +61,27 @@ app = Flask(__name__)
 
 @app.route('/api/predict', methods=['POST'])
 def predict():
-    #print(request.json['imageId'])
-    img_index = request.json['imageId']
-    original, processed, label = preprocessing.rtp_data_processing(img_index)
-    processed = processed.reshape((-1, 32, 32, 1)).astype(np.float32)
-    output = predict_svhn(processed)
-    return jsonify(results=output)
+  #print(request.json['imageId'])
+  img_index = request.json['imageId']
+  original, processed, label = preprocessing.rtp_data_processing(img_index)
+  processed = processed.reshape((-1, 32, 32, 1)).astype(np.float32)
+  output = predict_svhn(processed)
+  return jsonify(results=output)
 
 @app.route('/')
 def main():
-    return render_template('index.html')
+  return render_template('index.html')
 
 @app.errorhandler(500)
 def server_error(e):
-    logging.exception('An error occurred during a request.')
-    return """
-    An internal error occurred: <pre>{}</pre>
-    See logs for full stacktrace.
-    """.format(e), 500
+  logging.exception('An error occurred during a request.')
+  return """
+  An internal error occurred: <pre>{}</pre>
+  See logs for full stacktrace.
+  """.format(e), 500
 
 if __name__ == '__main__':
-    # This is used when running locally. Gunicorn is used to run the
-    # application on Google App Engine. See entrypoint in app.yaml.
-    app.run(host='127.0.0.1', port=8080, debug=True)
+  # This is used when running locally. Gunicorn is used to run the
+  # application on Google App Engine. See entrypoint in app.yaml.
+  app.run(host='127.0.0.1', port=8080, debug=True)
 # [END app]
