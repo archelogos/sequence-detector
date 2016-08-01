@@ -37,11 +37,6 @@ tf.app.flags.DEFINE_integer('N', 5, "")
 
 # Data consts
 tf.app.flags.DEFINE_string('data_dir', 'data', "")
-#DATA_URL = 'http://ufldl.stanford.edu/housenumbers/'
-#DATA_FOLDER = '../data/SVHN_data/'
-#TRAIN_FILENAME= 'train.tar.gz'
-#TEST_FILENAME = 'test.tar.gz'
-#EXTRA_FILENAME = 'extra.tar.gz'
 
 # Model variables
 tf.app.flags.DEFINE_integer('BATCH_SIZE', 64, "")
@@ -52,7 +47,7 @@ tf.app.flags.DEFINE_integer('DEPTH_3', 64, "")
 tf.app.flags.DEFINE_integer('NODES', 256, "")
 
 """
-  Convolutional Neural Netowrk class
+  Convolutional Neural Network class
   Methods:
   # logits = inference(data)
   # loss = loss(logits, labels)
@@ -95,7 +90,7 @@ class CNN:
     self.NL_biases = tf.Variable(tf.constant(1.0, shape=[FLAGS.NUM_LABELS]))
 
   def inference(self, data):
-    """Build the SVHN CNN model.
+    """Make inferences from SVHN CNN model.
 
     Args:
       data: dataset of processed SVHN images.
@@ -117,7 +112,6 @@ class CNN:
     conv3 = tf.nn.relu(tf.nn.bias_add(kernel3, self.conv3_biases))
     norm3 = tf.nn.local_response_normalization(conv3)
     pool = tf.nn.max_pool(norm3, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
-    #pool = norm3
 
     pool_shape = pool.get_shape().as_list()
     reshape = tf.reshape(pool, [pool_shape[0], pool_shape[1] * pool_shape[2] * pool_shape[3]])
@@ -161,7 +155,7 @@ class CNN:
       loss: Loss from loss().
 
     Returns:
-      optimizer: op for training.
+      optimizer: optimizer for training.
     """
     optimizer = tf.train.AdagradOptimizer(0.01).minimize(loss)
     return optimizer

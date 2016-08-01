@@ -18,7 +18,6 @@ from PIL import Image
 N = 5
 IMAGE_SIZE = 32
 NUM_CHANNELS = 1
-#SAMPLE_PRED_SIZE = 1
 RTP_FOLDER = 'svhn/data'
 
 

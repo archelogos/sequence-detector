@@ -94,6 +94,7 @@ def train():
         [optimizer, loss, train_prediction], feed_dict=feed_dict)
       if (step % 5000 == 0):
         print('Minibatch loss at step %d: %f' % (step, l))
+        # Commented partial estimation to improve the performance of the training computation
         #print('Minibatch accuracy: %.1f%%' % svhn.accuracy(predictions, batch_labels))
         #print('Validation accuracy: %.1f%%' % svhn.accuracy(valid_prediction.eval(session=sess), valid_labels))
 

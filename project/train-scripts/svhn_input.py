@@ -21,15 +21,9 @@ import os
 import re
 import sys
 import tarfile
-#import h5py
-#import glob
 
 import numpy as np
-#from scipy import ndimage
-#from scipy.misc import imresize
-#from six.moves.urllib.request import urlretrieve
 from six.moves import cPickle as pickle
-#from PIL import Image
 
 SVHN_data = {}
 
