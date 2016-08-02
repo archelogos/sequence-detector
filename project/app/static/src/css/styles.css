@@ -55,7 +55,8 @@ html, body {
 }
 .mdl-demo main > .mdl-layout__tab-panel {
   padding: 8px;
-  padding-top: 48px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 .mdl-demo .mdl-card {
   height: auto;
@@ -66,11 +67,10 @@ html, body {
   height: auto;
 }
 .mdl-demo .mdl-card .mdl-card__supporting-text {
-  margin: 40px;
+  margin: 20px;
   flex-grow: 1;
   padding: 0;
   color: inherit;
-  width: calc(100% - 80px);
 }
 .mdl-demo.mdl-demo .mdl-card__supporting-text h4 {
   margin-top: 0;
@@ -208,7 +208,7 @@ html, body {
 }
 
 
-#image-container img{
+#image-container-init img{
   cursor: pointer;
   width: 100px;
   height: 100px;
@@ -218,12 +218,49 @@ html, body {
   transition: 0.5s all;
 }
 
-#image-container img:hover, #image-container img:focus, #image-container img.selected{
+#image-container-init img:hover, #image-container-init img:focus{
   box-shadow: 0 8px 17px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);
 }
 
+.next-button{
+  float: right;
+}
 
+header .mdl-progress{
+  height: 2px;
+  width: auto;
+}
 
-#predict{
-  font-size: 20px;
+#state-init{
+  display: block;
+}
+
+#state-selected{
+  display: none;
+}
+
+#state-loading{
+  display: none;
+}
+
+#state-success{
+  display: none;
+}
+
+#state-error{
+  display: none;
+}
+
+.cell-results{
+  padding: 10px 20px;
+}
+
+.cell-results.exact-result{
+  background: #8BC349;
+  color: #fff;
+}
+
+.cell-results.error-result{
+  background: #F44336;
+  color: #fff;
 }

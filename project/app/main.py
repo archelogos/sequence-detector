@@ -63,10 +63,11 @@ app = Flask(__name__)
 def predict():
   #print(request.json['imageId'])
   img_index = request.json['imageId']
-  original, processed, label = preprocessing.rtp_data_processing(img_index)
+  original, processed, labels = preprocessing.rtp_data_processing(img_index)
   processed = processed.reshape((-1, 32, 32, 1)).astype(np.float32)
   output = predict_svhn(processed)
-  return jsonify(results=output)
+  output['labels'] = labels.flatten().tolist()
+  return jsonify(output)
 
 @app.route('/')
 def main():

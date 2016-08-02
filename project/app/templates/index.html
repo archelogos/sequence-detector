@@ -54,6 +54,7 @@
   <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
       <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+        <div id="state-loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
         <div class="mdl-layout--large-screen-only mdl-layout__header-row">
         </div>
         <div class="mdl-layout mdl-layout__header-row">
@@ -72,29 +73,137 @@
         </div>
       </header>
       <main class="mdl-layout__content">
+        <!-- Try -->
         <div class="mdl-layout__tab-panel is-active" id="try">
-          <section id="init" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+          <!-- INIT State -->
+          <section id="state-init" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
               <div class="mdl-card__supporting-text">
                 <h3>Step One: Select an image</h3>
-                <div id="image-container"></div>
+                <div id="image-container-init"></div>
               </div>
               <div class="mdl-card__actions">
                 <!-- Flat button with ripple -->
-                <button id="predict-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary">
-                  PREDICT
+                <button id="init-button-prev" class="mdl-button mdl-js-button mdl-js-ripple-effect">
+                  Reload Images
+                </button>
+                <button id="init-button-next" class="mdl-button mdl-js-button mdl-button--primary next-button">
+                  Next
+                </button>
+              </div>
+            </div>
+          </section>
+          <!-- SELECTED State -->
+          <section id="state-selected" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text">
+                <h3>Step Two: Verify the image</h3>
+                <div id="image-container-selected"></div>
+              </div>
+              <div class="mdl-card__actions">
+                <!-- Flat button with ripple -->
+                <button id="selected-button-prev" class="mdl-button mdl-js-button mdl-js-ripple-effect">
+                  Back
+                </button>
+                <button id="selected-button-next" class="mdl-button mdl-js-button mdl-button--primary next-button">
+                  Make Prediction
+                </button>
+              </div>
+            </div>
+          </section>
+          <!-- SUCCESS State -->
+          <section id="state-success" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text">
+                <h3>Results</h3>
+                <div class="mdl-grid">
+                  <div id="image-container-success" class="mdl-cell mdl-cell--12-col"></div>
+                  <div id="label-container-success" class="mdl-cell mdl-cell--6-col mdl-shadow--2dp"></div>
+                  <div id="prediction-container-success" class="mdl-cell mdl-cell--6-col mdl-shadow--2dp"></div>
+                  <div id="probs-container-success" class="mdl-cell mdl-cell--12-col">
+                    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                      <thead>
+                        <tr>
+                          <th class="mdl-data-table__cell">Softmax</th>
+                          <th>Length</th>
+                          <th>Digit 1</th>
+                          <th>Digit 2</th>
+                          <th>Digit 3</th>
+                          <th>Digit 4</th>
+                          <th>Digit 5</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr id="row-0">
+                          <td class="mdl-data-table__cell">0</td>
+                          <!-- <td>0.12313</td>-->
+                        </tr>
+                        <tr id="row-1">
+                          <td class="mdl-data-table__cell">1</td>
+                        </tr>
+                        <tr id="row-2">
+                          <td class="mdl-data-table__cell">2</td>
+                        </tr>
+                        <tr id="row-3">
+                          <td class="mdl-data-table__cell">3</td>
+                        </tr>
+                        <tr id="row-4">
+                          <td class="mdl-data-table__cell">4</td>
+                        </tr>
+                        <tr id="row-5">
+                          <td class="mdl-data-table__cell">5</td>
+                        </tr>
+                        <tr id="row-6">
+                          <td class="mdl-data-table__cell">6</td>
+                        </tr>
+                        <tr id="row-7">
+                          <td class="mdl-data-table__cell">7</td>
+                        </tr>
+                        <tr id="row-8">
+                          <td class="mdl-data-table__cell">8</td>
+                        </tr>
+                        <tr id="row-9">
+                          <td class="mdl-data-table__cell">9</td>
+                        </tr>
+                        <tr id="row-10">
+                          <td class="mdl-data-table__cell">No digit</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="mdl-card__actions">
+                <!-- Flat button with ripple -->
+                <button id="success-button-next" class="mdl-button mdl-js-button mdl-button--primary next-button">
+                  Try again
+                </button>
+              </div>
+            </div>
+          </section>
+          <!-- ERROR State -->
+          <section id="state-error" class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text">
+                <h3>Error!</h3>
+              </div>
+              <div class="mdl-card__actions">
+                <!-- Flat button with ripple -->
+                <button id="error-button-next" class="mdl-button mdl-js-button mdl-button--primary next-button">
+                  Reset
                 </button>
               </div>
             </div>
           </section>
         </div>
+        <!-- Details -->
         <div class="mdl-layout__tab-panel" id="details">
           <section class="section--center mdl-grid mdl-grid--no-spacing">
             <div class="mdl-cell mdl-cell--12-col">
               <h4>Overview</h4>
               Minim duis incididunt est cillum est ex occaecat consectetur. Qui sint ut et qui nisi cupidatat. Reprehenderit nostrud proident officia exercitation anim et pariatur ex.
 
-              <h5 id="lorem1">Step 1</h5>
+              <h5 id="lorem1">Point 1</h5>
               Excepteur et pariatur officia veniam anim culpa cupidatat consequat ad velit culpa est non.
               <ul>
                 <li>Nisi qui nisi duis commodo duis reprehenderit consequat velit aliquip.</li>
@@ -105,7 +214,7 @@
                 Sit qui est voluptate proident minim cillum in aliquip cupidatat labore pariatur id tempor id. Proident occaecat occaecat sint mollit tempor duis dolor cillum anim. Dolore sunt ea mollit fugiat in aliqua consequat nostrud aliqua ut irure in dolore. Proident aliqua culpa sint sint exercitation. Non proident occaecat reprehenderit veniam et proident dolor id culpa ea tempor do dolor. Nulla adipisicing qui fugiat id dolor. Nostrud magna voluptate irure veniam veniam labore ipsum deserunt adipisicing laboris amet eu irure. Sunt dolore nisi velit sit id. Nostrud voluptate labore proident cupidatat enim amet Lorem officia magna excepteur occaecat eu qui. Exercitation culpa deserunt non et tempor et non.
               </p>
 
-              <h5 id="lorem2">Step 2</h5>
+              <h5 id="lorem2">Point 2</h5>
               Excepteur et pariatur officia veniam anim culpa cupidatat consequat ad velit culpa est non.
               <ul>
                 <li>Nisi qui nisi duis commodo duis reprehenderit consequat velit aliquip.</li>
@@ -116,7 +225,7 @@
                 Sit qui est voluptate proident minim cillum in aliquip cupidatat labore pariatur id tempor id. Proident occaecat occaecat sint mollit tempor duis dolor cillum anim. Dolore sunt ea mollit fugiat in aliqua consequat nostrud aliqua ut irure in dolore. Proident aliqua culpa sint sint exercitation. Non proident occaecat reprehenderit veniam et proident dolor id culpa ea tempor do dolor. Nulla adipisicing qui fugiat id dolor. Nostrud magna voluptate irure veniam veniam labore ipsum deserunt adipisicing laboris amet eu irure. Sunt dolore nisi velit sit id. Nostrud voluptate labore proident cupidatat enim amet Lorem officia magna excepteur occaecat eu qui. Exercitation culpa deserunt non et tempor et non.
               </p>
 
-              <h5 id="lorem3">Step 3</h5>
+              <h5 id="lorem3">Point 3</h5>
               Excepteur et pariatur officia veniam anim culpa cupidatat consequat ad velit culpa est non.
               <ul>
                 <li>Nisi qui nisi duis commodo duis reprehenderit consequat velit aliquip.</li>
@@ -151,6 +260,10 @@
           </div>
         </footer>
       </main>
+      <div id="snackbar-info" class="mdl-js-snackbar mdl-snackbar">
+        <div class="mdl-snackbar__text"></div>
+        <button class="mdl-snackbar__action" type="button"></button>
+      </div>
     </div>
 		<script async src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     <script async src="static/src/js/main.js"></script>
