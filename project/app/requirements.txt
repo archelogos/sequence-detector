@@ -1,2 +1,13 @@
 Flask==0.11.1
 gunicorn==19.6.0
+Flask-Cors==2.1.2
+numpy==1.11.1
+scipy==0.17.0
+six==1.10.0
+wheel==0.29.0
+itsdangerous==0.24
+Jinja2==2.8
+MarkupSafe==0.23
+Werkzeug==0.11.2
+Pillow==2.6.0
+https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.9.0-cp27-none-linux_x86_64.whl

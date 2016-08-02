@@ -53,7 +53,7 @@ def rtp_data_processing(img_index):
 		image_proc = sequence
 		labels = seq_labels
 
-	#labels = label_zero(seq_labels)
+	labels = label_zero(seq_labels)
 	return image_file, image_proc, labels
 
 def image_processing(image, metadata):
@@ -87,10 +87,8 @@ def label_processing(metadata):
 
 
 def label_zero(labels):
-	for label in labels:
-		#print(label)
-		L = label[0]
-		for i in range(1,L+1):
-			if label[i] == 10:
-				label[i] = 0
+	L = labels[0]
+	for i in range(1,L+1):
+		if labels[i] == 10:
+			labels[i] = 0
 	return labels

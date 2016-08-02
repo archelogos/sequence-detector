@@ -17,3 +17,5 @@
 *.pyc
 
 *.zip
+
+/project/app/env
