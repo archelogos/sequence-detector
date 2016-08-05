@@ -264,3 +264,14 @@ header .mdl-progress{
   background: #F44336;
   color: #fff;
 }
+
+@media screen and (max-width: 1024px){
+  .mdl-demo .mdl-layout__header-row {
+    padding-left: 15px;
+  }
+  #image-container-init img{
+    width: 75px;
+    height: 75px;
+    margin: 10px 5px;
+  }
+}
